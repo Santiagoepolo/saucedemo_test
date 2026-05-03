@@ -41,7 +41,7 @@ export class HomePage extends BasePage {
     for (let i = 0; i < quantity; i++) {
         const buttons = await this.addToCartButton.all();
         const randomIndex = Math.floor(Math.random() * buttons.length);
-        await this,this.addToCartButton.nth(randomIndex).click();
+        await this.addToCartButton.nth(randomIndex).click();
         await this.page.waitForTimeout(300);
     }
 
@@ -55,4 +55,12 @@ export class HomePage extends BasePage {
         } else { throw new Error('There are no items to remove from cart');
         }
 
-}}
+}
+    async goToCartPage(): Promise<void> {
+        await this.page.waitForSelector('[data-test="shopping_cart_container"]', {
+        timeout: 10000,
+        state: 'visible'
+    });
+        await this.shoppingCartIcon.click();
+    }
+}
