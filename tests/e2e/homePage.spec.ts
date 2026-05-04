@@ -10,23 +10,23 @@ test.describe('Home Page', () => {
         await homePage.visit();
         await loginPage.fillLoginForm('standard_user', 'secret_sauce');
         await homePage.addToCartAleatoriProduct();
-        await homePage.expectShoppingCartIconCountIncrease(1);
+        await homePage.expectShoppingCartIconCountIncrease();
     });
 test('2.2. successfully add multiple products to the cart', async ({ page }) => {
     const homePage = new HomePage(page);
     const loginPage = new LoginPage(page);
     await homePage.visit();
     await loginPage.fillLoginForm('standard_user', 'secret_sauce');
-    await homePage.addMultipleProductsToCart(5);
-    await homePage.expectShoppingCartIconCountIncrease(5);
+    await homePage.addMultipleProductsToCart();
+    await homePage.expectShoppingCartIconCountIncrease();
 });
 test('2.3. successfully remove a product from the cart', async ({ page }) => {
     const homePage = new HomePage(page);
     const loginPage = new LoginPage(page);
     await homePage.visit();
     await loginPage.fillLoginForm('standard_user', 'secret_sauce');
-    await homePage.addToCartAleatoriProduct();
+    await homePage.addMultipleProductsToCart();
     await homePage.removeProductFromCart();
-    await homePage.expectShoppingCartIconCountIncrease(0);
+    await homePage.expectShoppingCartIconCountIncrease();
 });
 });

@@ -11,7 +11,7 @@ test.describe('Cart Shopping', () => {
         const homePage = new HomePage(page);
         await loginPage.visit();
         await loginPage.fillLoginForm('standard_user', 'secret_sauce');
-        await homePage.addMultipleProductsToCart(2);
+        await homePage.addMultipleProductsToCart();
         await homePage.goToCartPage()
         await cartPage.compareNumberOfItemsInCart();
         await cartPage.selectCheckoutButton();
