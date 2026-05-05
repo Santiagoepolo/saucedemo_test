@@ -6,6 +6,7 @@ export class HomePage extends BasePage {
     private readonly shoppingCartIcon: Locator;
     private readonly shoppingCartBadge: Locator;
     private readonly removeProductFromCartButton: Locator;
+    private readonly productText: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -13,6 +14,7 @@ export class HomePage extends BasePage {
         this.shoppingCartIcon = page.locator('#shopping_cart_container');
         this.shoppingCartBadge = page.locator('.shopping_cart_badge, [data-test="shopping-cart-badge"]');
         this.removeProductFromCartButton = page.getByRole('button', { name: 'Remove' });
+        this.productText = page.getByText('Products');
     }
 
     async addToCartAleatoriProduct(): Promise<void> {
@@ -66,5 +68,8 @@ export class HomePage extends BasePage {
 
     async goToCartPage(): Promise<void> {
         await this.shoppingCartIcon.click();
+    }
+    async validateImInHomePage(): Promise<void> {
+        await expect(this.productText).toBeVisible();
     }
 }
